@@ -10,19 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var toggle: UISwitch!
     
+    @IBOutlet var slider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        buttonMain.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         
     }
+    
+    
 
     @IBOutlet var buttonMain: UIButton!
     
+    
+    
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
+        
         buttonMain.setTitle("Pressed", for: .normal)
         print("Button was tapped!")
+        if toggle.isOn {
+            print("The switch is on!")
+        } else {
+            print("The switch is off!")
+        }
+        print("The slider is set to \(slider.value)")
     }
     
     @IBAction func toggleSwitched(_ sender: UISwitch) {
@@ -40,6 +55,7 @@ class ViewController: UIViewController {
             print(text)
         }
     }
+    
     @IBAction func keyboardReturnKeyTapped(_ sender: UITextField) {
         
         
@@ -50,7 +66,17 @@ class ViewController: UIViewController {
     }
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         print(sender.value)
+        
     }
+    
+    
+    
+    @IBAction func respondToTapGesture(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: view)
+        print(location)
+    }
+    
+    
     
     
     

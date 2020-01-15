@@ -23,26 +23,31 @@
                                     <color key="titleColor" red="1" green="0.44141355500000001" blue="0.26132857100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wes-EW-LK4"/>
-                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9bj-93-pix">
                                 <rect key="frame" x="182.5" y="359" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <action selector="toggleSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="wNZ-7B-axn"/>
                                 </connections>
                             </switch>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aLs-cu-FvC">
-                                <rect key="frame" x="69" y="253" width="276" height="30"/>
+                                <rect key="frame" x="69" y="277" width="276" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ixQ-Bd-3BF"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Iz-rT-tzr">
+                                <rect key="frame" x="164" y="77" width="86" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vgb-Ku-vaI">
-                                <rect key="frame" x="159" y="172" width="97" height="34"/>
+                                <rect key="frame" x="159" y="134" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -51,27 +56,31 @@
                                     <action selector="textChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="8g2-dn-kgj"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Iz-rT-tzr">
-                                <rect key="frame" x="164" y="113" width="86" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="mOc-3k-G5e" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mzo-nO-U5V"/>
                             <constraint firstItem="mOc-3k-G5e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="txk-U5-8Si"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rEK-S9-hlO" appends="YES" id="Kxd-Bq-1wD"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="buttonMain" destination="mOc-3k-G5e" id="q27-FV-FSP"/>
+                        <outlet property="slider" destination="aLs-cu-FvC" id="11A-sS-owp"/>
+                        <outlet property="toggle" destination="9bj-93-pix" id="4dO-jD-rIt"/>
                         <outlet property="topLabel" destination="7Iz-rT-tzr" id="cd5-95-Cpf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rEK-S9-hlO">
+                    <connections>
+                        <action selector="respondToTapGesture:" destination="BYZ-38-t0r" id="8s4-xf-PlH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
