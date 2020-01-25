@@ -29,10 +29,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJ4-q0-qDI">
                                         <rect key="frame" x="0.0" y="0.0" width="141" height="30"/>
                                         <state key="normal" title="Forgot User Name? "/>
+                                        <connections>
+                                            <action selector="forgotUserName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nqu-lD-STQ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YiW-M7-BDs">
                                         <rect key="frame" x="149" y="0.0" width="141" height="30"/>
                                         <state key="normal" title="Forgot Password?"/>
+                                        <connections>
+                                            <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nSH-f0-YJz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -72,6 +78,8 @@
                         <barButtonItem key="backBarButtonItem" title="Log" id="9KK-oh-ZFI"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="forgetUserName" destination="CJ4-q0-qDI" id="Rw2-V5-KK6"/>
+                        <outlet property="forgotPassword" destination="YiW-M7-BDs" id="fwH-ig-UaR"/>
                         <outlet property="textFieldUserName" destination="Tbx-kr-MaT" id="n1Z-l6-wCu"/>
                         <segue destination="dGZ-zp-Vv8" kind="show" identifier="toRed" id="Y99-EC-OyP"/>
                     </connections>
