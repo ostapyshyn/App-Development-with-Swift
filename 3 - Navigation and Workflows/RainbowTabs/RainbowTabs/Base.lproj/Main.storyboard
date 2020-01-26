@@ -14,7 +14,34 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="eOH-zm-5El">
+                                <rect key="frame" x="143.5" y="394" width="127" height="108"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMo-WE-SRg">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="plusTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UaU-ij-5xG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ged-0P-JVy">
+                                        <rect key="frame" x="92" y="0.0" width="35" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                        <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="plusTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BSP-08-iZ0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="0.9951816307106599" green="0.40710207799561976" blue="0.42435569942540141" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eOH-zm-5El" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Rzs-zK-Pa4"/>
+                            <constraint firstItem="eOH-zm-5El" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kT3-w3-l1A"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Red" image="R" selectedImage="R Selected" id="EWy-sM-fWY"/>
@@ -69,8 +96,8 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="NXC-rv-4VT"/>
                         <segue destination="nXK-hk-h6T" kind="relationship" relationship="viewControllers" id="jvb-oq-j6w"/>
                         <segue destination="hNa-KC-AAl" kind="relationship" relationship="viewControllers" id="f3t-O7-We5"/>
-                        <segue destination="ANb-OB-CW5" kind="relationship" relationship="viewControllers" id="EZO-aW-YLW"/>
                         <segue destination="kBn-O8-7Rt" kind="relationship" relationship="viewControllers" id="vh2-y2-nyX"/>
+                        <segue destination="ANb-OB-CW5" kind="relationship" relationship="viewControllers" id="EZO-aW-YLW"/>
                         <segue destination="vhh-We-5sQ" kind="relationship" relationship="viewControllers" id="sFM-hc-uVh"/>
                     </connections>
                 </tabBarController>

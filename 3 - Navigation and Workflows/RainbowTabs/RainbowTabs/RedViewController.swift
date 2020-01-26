@@ -18,5 +18,22 @@ class RedViewController: UIViewController {
     }
 
 
+    @IBAction func plusTapped(_ sender: UIButton) {
+        let action = sender.titleLabel?.text ?? nil
+        
+        print(Date(), #line, #function, action)
+        
+        switch action {
+        case "+":
+            break;
+        case "-":
+            print("minus")
+            let count = tabBarController?.viewControllers?.count ?? 0
+            print(#line, #function, count)
+            break;
+        default:
+            break;
+        }
+    }
 }
 
