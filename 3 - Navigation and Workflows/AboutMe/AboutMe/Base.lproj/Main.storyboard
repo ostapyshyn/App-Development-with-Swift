@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Bio-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AboutMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,8 +15,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XD-zf-27I">
-                                <rect key="frame" x="160" y="424" width="94" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My name is Volodymyr." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7XD-zf-27I">
+                                <rect key="frame" x="107" y="376.5" width="200" height="143.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="jxM-Y4-grP"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,13 +32,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="XE7-V6-y9l"/>
+                    <tabBarItem key="tabBarItem" title="Bio" image="pencil" catalog="system" id="XE7-V6-y9l"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
         </scene>
-        <!--Item-->
+        <!--Family-->
         <scene sceneID="hW6-7A-cno">
             <objects>
                 <viewController id="dZW-Ks-TWt" sceneMemberID="viewController">
@@ -43,8 +46,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-wN-psp">
-                                <rect key="frame" x="160" y="424" width="94" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I like my family." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-wN-psp">
+                                <rect key="frame" x="80.5" y="424" width="253" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -57,13 +60,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dgf-i6-z8X"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="301-ye-eRF"/>
+                    <tabBarItem key="tabBarItem" title="Family" image="bell" catalog="system" id="301-ye-eRF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGo-Pv-BgD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1728.985507246377" y="138.61607142857142"/>
         </scene>
-        <!--Item-->
+        <!--Hobbies-->
         <scene sceneID="dsE-H6-IhS">
             <objects>
                 <viewController id="4uz-dC-ex9" sceneMemberID="viewController">
@@ -71,8 +74,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mau-Ef-6kB">
-                                <rect key="frame" x="160" y="424" width="94" height="48"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love coding." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mau-Ef-6kB">
+                                <rect key="frame" x="95.5" y="424" width="223.5" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -85,7 +88,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kbZ-c7-7D4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="YFz-Wv-YUP"/>
+                    <tabBarItem key="tabBarItem" title="Hobbies" image="smiley.fill" catalog="system" id="YFz-Wv-YUP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2i-sW-cd2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,4 +114,9 @@
             <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bell" catalog="system" width="64" height="62"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="smiley.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>
