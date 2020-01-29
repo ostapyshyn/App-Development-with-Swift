@@ -12,10 +12,34 @@ class ResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        calculatePersonalityResult()
 
         // Do any additional setup after loading the view.
     }
     
+    func calculatePersonalityResult() {
+        var frequencyOfAnswers: [AnimalType: Int] = [:]
+        let responseTypes = responses.map { $0.type }
+        
+        for response in responseTypes {
+            let newCount: Int
+            
+            if let oldCount = frequencyOfAnswers[response] {
+                newCount = oldCount + 1
+            } else {
+                newCount = 1
+            }
+            
+            frequencyOfAnswers[response] = newCount
+        }
+        
+    }
+    
+    
+    
+    
+    
+    var responses: [Answer]!
 
     /*
     // MARK: - Navigation
