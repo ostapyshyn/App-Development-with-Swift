@@ -65,8 +65,10 @@
                             <constraint firstItem="pMN-Tt-XtJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="BXC-Vp-B4O"/>
                             <constraint firstItem="N8d-dX-5g4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DeZ-tt-e2y"/>
                             <constraint firstItem="j9y-LZ-OwT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Hgc-Of-Tjt"/>
+                            <constraint firstItem="1K9-NB-870" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hEl-if-2jP" secondAttribute="trailing" id="Nnn-PG-9l8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N8d-dX-5g4" secondAttribute="trailing" constant="20" id="V2N-U3-B4c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1K9-NB-870" secondAttribute="trailing" constant="20" id="g6U-Nr-qLu"/>
+                            <constraint firstItem="N8d-dX-5g4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j9y-LZ-OwT" secondAttribute="trailing" id="o2u-Zi-FhJ"/>
                             <constraint firstItem="pMN-Tt-XtJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oxo-w6-rkU"/>
                             <constraint firstItem="hEl-if-2jP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="sEd-g5-hMi"/>
                             <constraint firstItem="j9y-LZ-OwT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="yWM-mk-14O"/>
@@ -270,7 +272,7 @@
                         <outlet property="singleButton3" destination="4gE-pz-24g" id="pwM-xk-7yv"/>
                         <outlet property="singleButton4" destination="mh4-Kh-tnk" id="GDg-0g-Hp6"/>
                         <outlet property="singleStackView" destination="h1F-bj-b8C" id="1d2-NI-hm1"/>
-                        <segue destination="MXn-q3-rn6" kind="show" identifier="ResultSegue" id="S9Q-qm-wdA"/>
+                        <segue destination="MXn-q3-rn6" kind="show" identifier="ResultsSegue" id="S9Q-qm-wdA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4K-oh-k9x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -312,10 +314,19 @@
                         <viewLayoutGuide key="safeArea" id="nXk-vA-tOh"/>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="Ol7-Gb-0mJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Bb2-W2-nLy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Bb2-W2-nLy">
+                            <connections>
+                                <segue destination="mwo-Qb-jju" kind="unwind" unwindAction="unwindToQuizIntroductionWithSegue:" id="Tcg-tg-g1C"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="resultAnswerLabel" destination="QWH-bN-Dy0" id="omy-yB-wO1"/>
+                        <outlet property="resultDefinitionLabel" destination="j4y-yI-k3f" id="ipm-vX-nR4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45l-3x-Mc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="mwo-Qb-jju" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2847" y="149"/>
         </scene>
