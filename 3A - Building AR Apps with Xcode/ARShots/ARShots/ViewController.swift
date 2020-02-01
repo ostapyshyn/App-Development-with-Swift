@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  SceneKit-Primitives
+//  ARShots
 //
-//  Created by Volodymyr Ostapyshyn on 31.01.2020.
+//  Created by Volodymyr Ostapyshyn on 01.02.2020.
 //  Copyright © 2020 Volodymyr Ostapyshyn. All rights reserved.
 //
 
@@ -17,36 +17,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sceneView.autoenablesDefaultLighting = true
-
-        
         // Set the view's delegate
         sceneView.delegate = self
-    
+        
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-    
-        // Show the world origin
-        sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin,
-        ARSCNDebugOptions.showWorldOrigin]
-    
-        // Load campus
-        loadCampus()
-    
-//        let node = SCNNode()
-//        node.position = SCNVector3(0.0, 0.2, 0.0)
-//        
-//        sceneView.scene.rootNode.addChildNode(node)
         
-        
-        
-    
-    }
-    
-    func loadCampus() {
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/campus.scn")!
-    
+        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        
         // Set the scene to the view
         sceneView.scene = scene
     }
@@ -56,22 +35,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        
-        
-        configuration.planeDetection = [.horizontal]
-        
+
+        configuration.planeDetection = .vertical
 
         // Run the view's session
         sceneView.session.run(configuration)
-    }
-    
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        guard let planeAnchor = anchor as? ARPlaneAnchor else {
-                return
-            }
-        
-            print("A new plane has been discovered.")
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,6 +49,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 
+    @IBAction func screenTapped(_ sender: UITapGestureRecognizer) {
+        
+        
+    }
     // MARK: - ARSCNViewDelegate
     
 /*
