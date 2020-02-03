@@ -44,6 +44,44 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard let imageAnchor = anchor as? ARImageAnchor else {
+                return
+            }
+       let referenceImage = imageAnchor.referenceImage
+       
+           let plane = SCNPlane(width:
+              referenceImage.physicalSize.width,
+                                height:
+                                   referenceImage.physicalSize.height)
+           plane.firstMaterial?.diffuse.contents = UIColor.blue
+           let planeNode = SCNNode(geometry: plane)
+           planeNode.opacity = 0.75
+            planeNode.eulerAngles.x = -Float.pi / 2
+
+           node.addChildNode(planeNode)
+        
+  
+            //planeNode.runAction(waitRemoveAction)
+      
+    }
+    
+    
+    
+    var waitRemoveAction: SCNAction {
+        return .sequence([.wait(duration: 5.0), .fadeOut(duration:
+           2.0), .removeFromParentNode()])
+    }
+   
+    
+    func nodeAdded(_ node: SCNNode, for planeAnchor: ARPlaneAnchor)
+       {
+        // Handle plane detection
+    }
+    
+    
+    
+    
     // MARK: - ARSCNViewDelegate
     
     /*
