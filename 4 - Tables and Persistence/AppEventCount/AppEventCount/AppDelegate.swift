@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  AppLifeCycle
+//  AppEventCount
 //
-//  Created by Volodymyr Ostapyshyn on 04.02.2020.
+//  Created by Volodymyr Ostapyshyn on 05.02.2020.
 //  Copyright © 2020 Volodymyr Ostapyshyn. All rights reserved.
 //
 
@@ -10,14 +10,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var viewController: ViewController?
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        viewController?.finishLaunch += 1
         // Override point for customization after application launch.
-        print("Did finish launching.")
         return true
     }
+    
+    
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         print("Will resign active.")
@@ -42,6 +46,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("WillTerminate")
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 
