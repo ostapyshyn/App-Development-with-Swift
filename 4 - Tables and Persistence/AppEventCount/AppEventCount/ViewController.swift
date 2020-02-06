@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         updateView()
     }
     
+    let text = "d"
+    
+    
     @IBOutlet var didFinishLaunching: UILabel!
     @IBOutlet var WillResignActive: UILabel!
     @IBOutlet var DidBecomeActive: UILabel!
