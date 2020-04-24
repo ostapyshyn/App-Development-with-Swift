@@ -13,6 +13,8 @@
 		0B71DC5824533A7700A451A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B71DC5724533A7700A451A0 /* Assets.xcassets */; };
 		0B71DC5B24533A7700A451A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B71DC5924533A7700A451A0 /* LaunchScreen.storyboard */; };
 		0B71DC6324533B6B00A451A0 /* FoodTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B71DC6224533B6B00A451A0 /* FoodTableVC.swift */; };
+		0B71DC6524533C6D00A451A0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B71DC6424533C6D00A451A0 /* Meal.swift */; };
+		0B71DC6724533C7500A451A0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B71DC6624533C7500A451A0 /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0B71DC5A24533A7700A451A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B71DC5C24533A7700A451A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B71DC6224533B6B00A451A0 /* FoodTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTableVC.swift; sourceTree = "<group>"; };
+		0B71DC6424533C6D00A451A0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		0B71DC6624533C7500A451A0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				0B71DC5024533A7300A451A0 /* SceneDelegate.swift */,
 				0B71DC6224533B6B00A451A0 /* FoodTableVC.swift */,
 				0B71DC5424533A7300A451A0 /* Main.storyboard */,
+				0B71DC6424533C6D00A451A0 /* Meal.swift */,
+				0B71DC6624533C7500A451A0 /* Food.swift */,
 				0B71DC5724533A7700A451A0 /* Assets.xcassets */,
 				0B71DC5924533A7700A451A0 /* LaunchScreen.storyboard */,
 				0B71DC5C24533A7700A451A0 /* Info.plist */,
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B71DC6524533C6D00A451A0 /* Meal.swift in Sources */,
 				0B71DC6324533B6B00A451A0 /* FoodTableVC.swift in Sources */,
+				0B71DC6724533C7500A451A0 /* Food.swift in Sources */,
 				0B71DC4F24533A7300A451A0 /* AppDelegate.swift in Sources */,
 				0B71DC5124533A7300A451A0 /* SceneDelegate.swift in Sources */,
 			);

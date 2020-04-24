@@ -9,6 +9,27 @@
 import UIKit
 
 class FoodTableVC: UITableViewController {
+    
+    var meals: [Meal] {
+        let eggs        = Food(name: "Eggs", description: "Poached eggs ")
+        let bread       = Food(name: "Bread", description: "Fresh bread")
+        let cheese      = Food(name: "Cheese", description: "Fresh cheese")
+        
+        let spaghetti   = Food(name: "Spaghetti", description: "Hand made spaghetti")
+        let meatballs   = Food(name: "Meatball", description: "Nice meatballs")
+        let pizza       = Food(name: "Pizza", description: "Big pizza")
+
+        let potato      = Food(name: "Potato", description: "Mashed potato")
+        let salat       = Food(name: "Salat", description: "Fresh salat")
+        let appleCake   = Food(name: "Apple Cake", description: "Round appleCake")
+        let iceCream    = Food(name: "Icecream", description: "Big Icecream")
+
+        let breakfast   = Meal(name: "Breakfast", food: [eggs, bread, cheese])
+        let lunch       = Meal(name: "Lunch", food: [spaghetti, meatballs, pizza])
+        let dinner      = Meal(name: "Dinner", food: [potato, salat, appleCake, iceCream])
+        
+        return [breakfast, lunch, dinner]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,25 +44,56 @@ class FoodTableVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return meals.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 0:
+            return meals[0].food.count
+        case 1:
+            return meals[1].food.count
+        case 2:
+            return meals[2].food.count
+        default:
+            return 0
+        }
+
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath)
 
-        // Configure the cell...
-
+        switch indexPath.section {
+        case 0:
+            cell.textLabel?.text = meals[0].food[indexPath.row].name
+            cell.detailTextLabel?.text = meals[0].food[indexPath.row].description
+        case 1:
+            cell.textLabel?.text = meals[1].food[indexPath.row].name
+            cell.detailTextLabel?.text = meals[1].food[indexPath.row].description
+        case 2:
+            cell.textLabel?.text = meals[2].food[indexPath.row].name
+            cell.detailTextLabel?.text = meals[2].food[indexPath.row].description
+        default:
+            cell.textLabel?.text = "Should not happen"
+        }
+        
         return cell
     }
-    */
-
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return meals[0].name
+        case 1:
+            return meals[1].name
+        case 2:
+            return meals[2].name
+        default:
+            return nil
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
