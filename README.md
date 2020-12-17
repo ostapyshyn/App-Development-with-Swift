@@ -10,3 +10,4 @@
 ![giphy](https://user-images.githubusercontent.com/25429165/72742871-491c5600-3bb3-11ea-9694-fcdb1f11e36c.gif)
 
 ### Personality Quiz
+![giphy](https://user-images.githubusercontent.com/25429165/102512028-30057900-4092-11eb-9edf-5d3ddcd9bf1a.gif)
