@@ -39,7 +39,7 @@ for item in dic {
         //print(total)
     } else if let valdoble = item.value as? Double {
         total += valdoble
-    } else if let str = item.value as? String {
+    } else if let str = item.value as? String { // is
         total += 1
     } else if let trueBool = item.value as? Bool {
         if trueBool  {

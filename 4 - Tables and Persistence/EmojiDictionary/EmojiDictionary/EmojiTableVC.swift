@@ -25,12 +25,7 @@ class EmojiTableVC: UITableViewController {
               usage: "love of something; attractive"),
         Emoji(symbol: "👮",
               name: "Police Officer",
-              description: "A police officer wearing a blue cap with a gold badge.",editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
+              description: "A police officer wearing a blue cap with a gold badge.",
               usage: "person of authority"),
         Emoji(symbol: "🐢",
               name: "Turtle",
@@ -76,6 +71,9 @@ class EmojiTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.cellLayoutMarginsFollowReadableWidth = true
         navigationItem.leftBarButtonItem = editButtonItem
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
+        
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -91,10 +89,10 @@ class EmojiTableVC: UITableViewController {
         tableView.reloadData()
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[indexPath.row]
-        print("\(emoji.symbol) \(indexPath)")
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let emoji = emojis[indexPath.row]
+//        print("\(emoji.symbol) \(indexPath)")
+//    }
     
     // MARK: - Table view data source
     
@@ -110,6 +108,28 @@ class EmojiTableVC: UITableViewController {
         } else {
             return 0
         }
+    }
+    
+    @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveUnwind",
+                let sourceViewController = segue.source as?
+                AddEditEmojiTableViewController,
+                let emoji = sourceViewController.emoji else { return }
+        
+            if let selectedIndexPath = tableView.indexPathForSelectedRow
+            {
+                emojis[selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath],
+                with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: emojis.count,
+                section: 0)
+                emojis.append(emoji)
+                tableView.insertRows(at: [newIndexPath],
+                with: .automatic)
+            }
+        
+        
     }
     
     
@@ -179,5 +199,21 @@ class EmojiTableVC: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender:
+    Any?) {
+        if segue.identifier == "EditEmoji" {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let emoji = emojis[indexPath.row]
+            let navController = segue.destination as!
+               UINavigationController
+            let addEditEmojiTableViewController =
+               navController.topViewController as!
+               AddEditEmojiTableViewController
+    
+            addEditEmojiTableViewController.emoji = emoji
+        }
+    }
+    
     
 }
