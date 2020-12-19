@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Emoji {
-    
+class Emoji {
     var symbol: String
     var name: String
     var description: String
@@ -21,5 +20,4 @@ struct Emoji {
         self.description = description
         self.usage = usage
     }
-    
 }
