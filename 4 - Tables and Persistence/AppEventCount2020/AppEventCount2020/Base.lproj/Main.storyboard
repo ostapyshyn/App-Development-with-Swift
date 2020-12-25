@@ -73,6 +73,15 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iph-k6-vG4" secondAttribute="trailing" constant="20" id="skF-o4-7bt"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="DidBecomeActive" destination="8tS-Rd-0of" id="owX-mA-Fu6"/>
+                        <outlet property="DidEnterBackground" destination="P3e-WF-Vu1" id="F8a-MY-Qrh"/>
+                        <outlet property="WillEnterForeground" destination="gin-lg-59G" id="bXj-We-e0D"/>
+                        <outlet property="WillResignActive" destination="dOe-4s-ylJ" id="9oo-pD-gcw"/>
+                        <outlet property="configurationForConnecting" destination="JfK-JL-Mzn" id="ctx-9e-sQG"/>
+                        <outlet property="didFinishLaunching" destination="i0V-AG-S3Q" id="CGz-Ql-yyV"/>
+                        <outlet property="willConnectTo" destination="PnM-8l-2N5" id="dGM-49-eQg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
