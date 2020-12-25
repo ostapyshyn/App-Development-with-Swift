@@ -20,11 +20,15 @@ class ViewController: UIViewController {
     
     
     @IBOutlet var didFinishLaunching: UILabel!
-    @IBOutlet var WillResignActive: UILabel!
+    
+    @IBOutlet var configurationForConnecting: UILabel!
+   
+    @IBOutlet var willConnectTo: UILabel!
+    
     @IBOutlet var DidBecomeActive: UILabel!
-    @IBOutlet var DidEnterBackground: UILabel!
+    @IBOutlet var WillResignActive: UILabel!
     @IBOutlet var WillEnterForeground: UILabel!
-    @IBOutlet var WillTerminate: UILabel!
+    @IBOutlet var DidEnterBackground: UILabel!
     
     var finishLaunch = 0
     var resignActive = 0

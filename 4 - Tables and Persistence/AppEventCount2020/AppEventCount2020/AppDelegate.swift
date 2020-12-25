@@ -1,79 +1,28 @@
 //
 //  AppDelegate.swift
-//  AppEventCount
+//  AppEventCount2020
 //
-//  Created by Volodymyr Ostapyshyn on 05.02.2020.
-//  Copyright © 2020 Volodymyr Ostapyshyn. All rights reserved.
+//  Created by Volodymyr Ostapyshyn on 25.12.2020.
 //
 
 import UIKit
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var viewController: ViewController?
-    
+
     var launchCount = 0
     var configurationForConnectingCount = 0
-    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         launchCount += 1
-        
-        viewController?.finishLaunch += 1
         // Override point for customization after application launch.
         return true
     }
-    
-    
-    
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        print("Will resign active.")
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        launchCount += 1
-        print("Did become active.")
-    }
-    
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Did enter background.")
-        
-    }
-    
-    func applicationWillEnterForeground(_ application:
-    UIApplication)
-    {
-        print("Will enter foreground.")
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        print("WillTerminate")
-    }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        configurationForConnectingCount += 1
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
