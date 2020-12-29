@@ -17,8 +17,6 @@ class AddEditEmojiTableViewController: UITableViewController {
     @IBOutlet var usageTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

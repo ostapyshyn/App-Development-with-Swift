@@ -14,16 +14,16 @@ class FoodTableVC: UITableViewController {
         let eggs        = Food(name: "Eggs", description: "Poached eggs ")
         let bread       = Food(name: "Bread", description: "Fresh bread")
         let cheese      = Food(name: "Cheese", description: "Fresh cheese")
-        
         let spaghetti   = Food(name: "Spaghetti", description: "Hand made spaghetti")
+        
         let meatballs   = Food(name: "Meatball", description: "Nice meatballs")
         let pizza       = Food(name: "Pizza", description: "Big pizza")
-
         let potato      = Food(name: "Potato", description: "Mashed potato")
         let salat       = Food(name: "Salat", description: "Fresh salat")
+        
         let appleCake   = Food(name: "Apple Cake", description: "Round appleCake")
         let iceCream    = Food(name: "Icecream", description: "Big Icecream")
-
+        
         let breakfast   = Meal(name: "Breakfast", food: [eggs, bread, cheese])
         let lunch       = Meal(name: "Lunch", food: [spaghetti, meatballs, pizza])
         let dinner      = Meal(name: "Dinner", food: [potato, salat, appleCake, iceCream])
@@ -58,7 +58,6 @@ class FoodTableVC: UITableViewController {
         default:
             return 0
         }
-
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,7 +76,6 @@ class FoodTableVC: UITableViewController {
         default:
             cell.textLabel?.text = "Should not happen"
         }
-        
         return cell
     }
     
