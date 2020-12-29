@@ -65,8 +65,6 @@ class EmojiTableVC: UITableViewController {
               usage: "completion")
     ]
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cellLayoutMarginsFollowReadableWidth = true
@@ -81,16 +79,21 @@ class EmojiTableVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let movedEmoji = emojis.remove(at: fromIndexPath.row)
         emojis.insert(movedEmoji, at: to.row)
         tableView.reloadData()
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let emoji = emojis[indexPath.row]
-//        print("\(emoji.symbol) \(indexPath)")
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let emoji = emojis[indexPath.row]
+        print("\(emoji.symbol) \(indexPath)")
+    }
     
     // MARK: - Table view data source
     
@@ -108,43 +111,33 @@ class EmojiTableVC: UITableViewController {
     
     @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind",
-                let sourceViewController = segue.source as?
+              let sourceViewController = segue.source as?
                 AddEditEmojiTableViewController,
-                let emoji = sourceViewController.emoji else { return }
+              let emoji = sourceViewController.emoji else { return }
         
-            if let selectedIndexPath = tableView.indexPathForSelectedRow
-            {
-                emojis[selectedIndexPath.row] = emoji
-                tableView.reloadRows(at: [selectedIndexPath],
-                with: .none)
-            } else {
-                let newIndexPath = IndexPath(row: emojis.count,
-                section: 0)
-                emojis.append(emoji)
-                tableView.insertRows(at: [newIndexPath],
-                with: .automatic)
-            }
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            emojis[selectedIndexPath.row] = emoji
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+        } else {
+            let newIndexPath = IndexPath(row: emojis.count, section: 0)
+            emojis.append(emoji)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier:"EmojiCell", for: indexPath)
-        
         let emoji = emojis[indexPath.row]
         //cell.update(with: emoji)
-        //cell.showsReorderControl = true
         cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
         cell.detailTextLabel?.text = emoji.description
+        cell.showsReorderControl = true
         return cell
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
-    
-    
-    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -164,7 +157,6 @@ class EmojiTableVC: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    
     
     /*
      // Override to support rearranging the table view.
@@ -191,20 +183,17 @@ class EmojiTableVC: UITableViewController {
      }
      */
     
-    override func prepare(for segue: UIStoryboardSegue, sender:
-    Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEmoji" {
             let indexPath = tableView.indexPathForSelectedRow!
             let emoji = emojis[indexPath.row]
             let navController = segue.destination as!
-               UINavigationController
+                UINavigationController
             let addEditEmojiTableViewController =
-               navController.topViewController as!
-               AddEditEmojiTableViewController
-    
+                navController.topViewController as!
+                AddEditEmojiTableViewController
+            
             addEditEmojiTableViewController.emoji = emoji
         }
     }
-    
-    
 }
