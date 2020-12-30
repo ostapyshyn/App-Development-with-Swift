@@ -215,12 +215,12 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="1NQ-PJ-GAZ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="0TH-Vn-rR4">
                             <connections>
-                                <segue destination="jrv-Fa-Vfo" kind="unwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="hHY-aF-sLZ"/>
+                                <segue destination="jrv-Fa-Vfo" kind="unwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="fKZ-lB-PWA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Gdm-6X-rzJ">
                             <connections>
-                                <segue destination="jrv-Fa-Vfo" kind="unwind" identifier="saveUnwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="Dcp-wx-Red"/>
+                                <segue destination="jrv-Fa-Vfo" kind="unwind" identifier="saveUnwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="6Pz-D9-ZFv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -246,7 +246,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="y7f-9Z-CaS" kind="relationship" relationship="rootViewController" id="XXs-g1-6YU"/>
+                        <segue destination="y7f-9Z-CaS" kind="relationship" relationship="rootViewController" destinationCreationSelector="addEditEmoji:sender:" id="XXs-g1-6YU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HP-tD-NXB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -271,7 +271,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WeE-7x-Xyo"/>
+        <segue reference="VDe-vz-qD9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
