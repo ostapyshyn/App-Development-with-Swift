@@ -24,9 +24,6 @@ class EmojiTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    
-    
     func update(with emoji: Emoji) {
         symbolLabel.text = emoji.symbol
         nameLabel.text = emoji.name

@@ -69,6 +69,7 @@ class EmojiTableVC: UITableViewController {
         super.viewDidLoad()
         tableView.cellLayoutMarginsFollowReadableWidth = true
         navigationItem.leftBarButtonItem = editButtonItem
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
         

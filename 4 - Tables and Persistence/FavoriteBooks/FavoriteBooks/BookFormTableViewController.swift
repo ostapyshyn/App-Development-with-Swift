@@ -8,6 +8,11 @@
 import UIKit
 
 class BookFormTableViewController: UITableViewController {
+    
+    @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var authorTextField: UITextField!
+    @IBOutlet var genreTextField: UITextField!
+    @IBOutlet var lengthTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +22,10 @@ class BookFormTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
     }
 
     // MARK: - Table view data source
