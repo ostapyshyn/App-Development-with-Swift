@@ -9,37 +9,52 @@ import UIKit
 
 class BookFormTableViewController: UITableViewController {
     
+    var book: Book?
+    
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var authorTextField: UITextField!
     @IBOutlet var genreTextField: UITextField!
     @IBOutlet var lengthTextField: UITextField!
-
+    
+    init?(coder: NSCoder, book: Book?) {
+        self.book = book
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.book = nil
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func updateView() {
+        guard let book = book else { return }
+        titleTextField.text = book.title
+        authorTextField.text = book.author
+        genreTextField.text = book.genre
+        lengthTextField.text = book.length
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let title = titleTextField.text,
+            let author = authorTextField.text,
+            let genre = genreTextField.text,
+            let length = lengthTextField.text else {return}
         
+        book = Book(title: title, author: author, genre: genre, length: length)
+        performSegue(withIdentifier: "UnwindToBookTable", sender: self)
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
+    
+    
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
