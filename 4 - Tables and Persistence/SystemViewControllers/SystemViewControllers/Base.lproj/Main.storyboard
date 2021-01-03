@@ -68,7 +68,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="8bC-Xf-vdC" id="9Uu-B6-QbQ"/>
+                        <outlet property="imageView" destination="zth-cn-6IW" id="30e-HW-QRC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
