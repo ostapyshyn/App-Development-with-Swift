@@ -7,8 +7,9 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet var imageView: UIImageView!
     
@@ -67,10 +68,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func emailButtonTapped(_ sender: UIButton) {
-        
+    func imagePickerController(_ picker: UIImagePickerController,
+       didFinishPickingMediaWithInfo info:
+       [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        imageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func emailButtonTapped(_ sender: UIButton) {
+        guard MFMailComposeViewController.canSendMail() else {
+            print("Can not send mail")
+            return
+        }
+        let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+
+        mailComposer.setToRecipients(["example@example.com"])
+        mailComposer.setSubject("Look at this")
+        mailComposer.setMessageBody("Hello, this is an email from the app I made.", isHTML: false)
+        
+        if let image = imageView.image, let jpegData = image.jpegData(compressionQuality: 0.9) {
+            mailComposer.addAttachmentData(jpegData, mimeType: "image/jpeg", fileName: "photo.jpg")
+        }
+        present(mailComposer, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result:
+       MFMailComposeResult, error: Error?) {
+            dismiss(animated: true, completion: nil)
+    }
     
     
     
