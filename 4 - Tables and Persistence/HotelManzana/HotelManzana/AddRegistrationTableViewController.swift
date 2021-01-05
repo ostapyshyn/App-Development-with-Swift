@@ -20,6 +20,8 @@ class AddRegistrationTableViewController: UITableViewController {
     
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
+    let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
+    let checkOutDateLabelCellIndexPath = IndexPath(row: 2, section: 1)
     
     var isCheckInDatePickerVisible: Bool = false {
         didSet {
@@ -90,7 +92,27 @@ class AddRegistrationTableViewController: UITableViewController {
             return UITableView.automaticDimension
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath == checkInDateLabelCellIndexPath && isCheckOutDatePickerVisible == false {
+            // check-in label selected, check-out picker is not visible, toggle check-in picker
+            isCheckInDatePickerVisible.toggle()
+        } else if indexPath == checkOutDateLabelCellIndexPath && isCheckInDatePickerVisible == false {
+            // check-out label selected, check-in picker is not visible, toggle check-out picker
+            isCheckOutDatePickerVisible.toggle()
+        } else if indexPath == checkInDateLabelCellIndexPath || indexPath == checkOutDateLabelCellIndexPath {
+            // either label was selected, previous conditions failed meaning at least one picker is visible, toggle both
+            isCheckInDatePickerVisible.toggle()
+            isCheckOutDatePickerVisible.toggle()
+        } else {
+            return
+        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
