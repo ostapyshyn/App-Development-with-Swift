@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddRegistrationTableViewController: UITableViewController {
+class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeTableViewControllerDelegate {
     
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
@@ -24,7 +24,34 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet var numberOfChildrenStepper: UIStepper!
     
     @IBOutlet var wifiSwitch: UISwitch!
+    @IBOutlet var roomTypeLabel: UILabel!
+    
+    var roomType: RoomType?
+    
+    var registration: Registration? {
         
+        guard let roomType = roomType else { return nil }
+        
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let numberOfAdults = Int(numberOfAdultsStepper.value)
+        let numberOfChildren = Int(numberOfChildrenStepper.value)
+        let hasWifi = wifiSwitch.isOn
+        
+        return Registration(firstName: firstName,
+                            lastName: lastName,
+                            emailAddress: email,
+                            checkInDate: checkInDate,
+                            checkOutDate: checkOutDate,
+                            numberOfAdults: numberOfAdults,
+                            numberOfChildren: numberOfChildren,
+                            wifi: hasWifi,
+                            roomType: roomType)
+    }
+    
     let checkInDatePickerCellIndexPath = IndexPath(row: 1, section: 1)
     let checkOutDatePickerCellIndexPath = IndexPath(row: 3, section: 1)
     let checkInDateLabelCellIndexPath = IndexPath(row: 0, section: 1)
@@ -55,6 +82,7 @@ class AddRegistrationTableViewController: UITableViewController {
         checkInDatePicker.date = midnightToday
         updateDateViews()
         updateNumberOfGuests()
+        updateRoomType()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,26 +94,33 @@ class AddRegistrationTableViewController: UITableViewController {
         updateDateViews()
     }
     
-    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let checkInDate = checkInDatePicker.date
-        let checkOutDate = checkOutDatePicker.date
-        let numberOfAdults = Int(numberOfAdultsStepper.value)
-        let numberOfChildren = Int(numberOfChildrenStepper.value)
-        let hasWifi = wifiSwitch.isOn
-        
-        print("DONE TAPPED")
-        print("firstName: \(firstName)")
-        print("lastName: \(lastName)")
-        print("email: \(email)")
-        print("checkIn: \(checkInDate)")
-        print("checkOut: \(checkOutDate)")
-        print("numberOfAdults: \(numberOfAdults)")
-        print("numberOfChildren: \(numberOfChildren)")
-        print("wifi: \(hasWifi)")
+//    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
+//        let firstName = firstNameTextField.text ?? ""
+//        let lastName = lastNameTextField.text ?? ""
+//        let email = emailTextField.text ?? ""
+//        let checkInDate = checkInDatePicker.date
+//        let checkOutDate = checkOutDatePicker.date
+//        let numberOfAdults = Int(numberOfAdultsStepper.value)
+//        let numberOfChildren = Int(numberOfChildrenStepper.value)
+//        let hasWifi = wifiSwitch.isOn
+//        let roomChoice = roomType?.name ?? "Not Set"
+//
+//        print("DONE TAPPED")
+//        print("firstName: \(firstName)")
+//        print("lastName: \(lastName)")
+//        print("email: \(email)")
+//        print("checkIn: \(checkInDate)")
+//        print("checkOut: \(checkOutDate)")
+//        print("numberOfAdults: \(numberOfAdults)")
+//        print("numberOfChildren: \(numberOfChildren)")
+//        print("wifi: \(hasWifi)")
+//        print("roomType: \(roomChoice)")
+//    }
+    
+    @IBAction func cancelButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
+    
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
@@ -95,9 +130,16 @@ class AddRegistrationTableViewController: UITableViewController {
         //implemented later
     }
     
+    @IBSegueAction func segueActiontoSelectRoom(_ coder: NSCoder) -> SelectRoomTypeTableViewController? {
+        let selectRoomTypeController = SelectRoomTypeTableViewController(coder: coder)
+        selectRoomTypeController?.delegate = self
+        selectRoomTypeController?.roomType = roomType
+        return selectRoomTypeController
+    }
+    
     func updateDateViews() {
-        checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: checkInDatePicker.date)
-
+        checkOutDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to:
+                                                                checkInDatePicker.date)
         checkInDateLabel.text = dateFormatter.string(from: checkInDatePicker.date)
         checkOutDateLabel.text = dateFormatter.string(from: checkOutDatePicker.date)
     }
@@ -105,6 +147,19 @@ class AddRegistrationTableViewController: UITableViewController {
     func updateNumberOfGuests() {
         numberOfAdultsLabel.text = "\(Int(numberOfAdultsStepper.value))"
         numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
+    }
+    
+    func updateRoomType() {
+        if let roomType = roomType {
+            roomTypeLabel.text = roomType.name
+        } else {
+            roomTypeLabel.text = "Not Set"
+        }
+    }
+    
+    func selectRoomTypeTableViewController(_ controller: SelectRoomTypeTableViewController, didSelect roomType: RoomType) {
+        self.roomType = roomType
+        updateRoomType()
     }
     
     // MARK: - Table view data source
