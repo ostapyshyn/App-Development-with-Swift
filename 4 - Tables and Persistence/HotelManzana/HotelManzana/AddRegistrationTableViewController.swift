@@ -185,7 +185,6 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     }
     
     func updateTotalCost() {
-        print(costOfRoomLabel.text)
         let totalPrice = wifiTotalPrice + roomPrice
         totalCostLabel.text = "$ \(totalPrice)"
     }
@@ -243,7 +242,6 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         if indexPath == checkInDateLabelCellIndexPath && isCheckOutDatePickerVisible == false {
             // check-in label selected, check-out picker is not visible, toggle check-in picker
             isCheckInDatePickerVisible.toggle()

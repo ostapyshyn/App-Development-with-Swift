@@ -1,80 +1,81 @@
 //
-//  RegistrationTableViewController.swift
+//  RegistrationDetailsTableViewController.swift
 //  HotelManzana
 //
-//  Created by Volodymyr Ostapyshyn on 07.01.2021.
+//  Created by Volodymyr Ostapyshyn on 08.01.2021.
 //
 
 import UIKit
 
-class RegistrationTableViewController: UITableViewController {
+class RegistrationDetailsTableViewController: UITableViewController {
     
+    @IBOutlet var firstNamaLabel: UILabel!
+    @IBOutlet var lastNameLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
+    @IBOutlet var checkInLabel: UILabel!
+    @IBOutlet var checkOutLabel: UILabel!
+    @IBOutlet var adultsLabel: UILabel!
+    @IBOutlet var childrenLabel: UILabel!
+    @IBOutlet var wifiLabel: UILabel!
+    @IBOutlet var roomLabel: UILabel!
     
-    
-    var registrations: [Registration] = []
     var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .medium
     
         return dateFormatter
     }()
     
+    var registration: Registration?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateLabels()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return registrations.count
+    
+    init?(coder: NSCoder, registration: Registration?) {
+        self.registration = registration
+        super.init(coder: coder)
     }
     
-    @IBSegueAction func addRegistration(_ coder: NSCoder, sender: Any?) -> RegistrationDetailsTableViewController? {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateLabels() {
+        firstNamaLabel.text = registration?.firstName
+        lastNameLabel.text = registration?.lastName
+        emailLabel.text = registration?.emailAddress
+        checkInLabel.text = dateFormatter.string(from: registration!.checkInDate)
+        checkOutLabel.text = dateFormatter.string(from: registration!.checkOutDate)
+        adultsLabel.text = String(registration?.numberOfAdults ?? 1)
+        childrenLabel.text = String(registration?.numberOfChildren ?? 1)
         
-        guard let cell = sender as? UITableViewCell,
-              let indexPath = tableView.indexPath(for: cell) else {
-            return nil
+        roomLabel.text = registration?.roomType.name
+        
+        if ((registration?.wifi) != nil) {
+            wifiLabel.text = "Yes"
+        } else {
+            wifiLabel.text = "No"
         }
-        let registration = registrations[indexPath.row]
-        return RegistrationDetailsTableViewController(coder: coder, registration: registration)
+        
     }
-    
+    // MARK: - Table view data source
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:
-                                                    "RegistrationCell", for: indexPath)
-        
-        let registration = registrations[indexPath.row]
-        
-        cell.textLabel?.text = registration.firstName + " " + registration.lastName
-        cell.detailTextLabel?.text = dateFormatter.string(from: registration.checkInDate) + " - " +
-            dateFormatter.string(from: registration.checkOutDate) +
-            ": " + registration.roomType.name
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
-    
-    @IBAction func unwindFromAddRegistration(unwindSegue: UIStoryboardSegue) {
-        guard let addRegistrationTableViewController =
-           unwindSegue.source as? AddRegistrationTableViewController,
-        let registration =
-           addRegistrationTableViewController.registration else
-           { return }
-    
-        registrations.append(registration)
-        tableView.reloadData()
-    }
-    
-    
+    */
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
