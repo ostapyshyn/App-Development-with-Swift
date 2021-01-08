@@ -53,7 +53,7 @@ class RegistrationTableViewController: UITableViewController {
     }
     
     @IBAction func unwindFromAddRegistration(unwindSegue: UIStoryboardSegue) {
-    
+        
         guard let addRegistrationTableViewController =
            unwindSegue.source as? AddRegistrationTableViewController,
         let registration =

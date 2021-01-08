@@ -25,9 +25,19 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     
     @IBOutlet var wifiSwitch: UISwitch!
     @IBOutlet var roomTypeLabel: UILabel!
+    @IBOutlet var doneButtonTapped: UIBarButtonItem!
+    
+    @IBOutlet var numberOfNightsLabel: UILabel!
+    @IBOutlet var dateOfNightsLabel: UILabel!
+    @IBOutlet var costOfRoomLabel: UILabel!
+    @IBOutlet var detailInfoRoomLabel: UILabel!
+    @IBOutlet var totalCostOfWiFiLabel: UILabel!
+    @IBOutlet var infoWiFiLabel: UILabel!
+    @IBOutlet var totalCostLabel: UILabel!
     
     var roomType: RoomType?
-    
+    var wifiTotalPrice = 0
+    var roomPrice = 0
     var registration: Registration? {
         
         guard let roomType = roomType else { return nil }
@@ -83,6 +93,10 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         updateDateViews()
         updateNumberOfGuests()
         updateRoomType()
+        updateSaveButtonState()
+        updateNumberOfNights()
+        updateWiFiLabels()
+        updateTotalCost()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -90,8 +104,21 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSaveButtonState()
+    }
+    
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
         updateDateViews()
+        updateNumberOfNights()
+        updateRoomType()
+        updateWiFiLabels()
+        updateTotalCost()
+    }
+    
+    @IBAction func textEditingChanged(_ sender: UITextField) {
+        updateSaveButtonState()
     }
     
 //    @IBAction func doneBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -121,13 +148,13 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         dismiss(animated: true, completion: nil)
     }
     
-    
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
     }
     
     @IBAction func wifiSwitchChanged(_ sender: UISwitch) {
-        //implemented later
+        updateWiFiLabels()
+        updateTotalCost()
     }
     
     @IBSegueAction func segueActiontoSelectRoom(_ coder: NSCoder) -> SelectRoomTypeTableViewController? {
@@ -135,6 +162,32 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         selectRoomTypeController?.delegate = self
         selectRoomTypeController?.roomType = roomType
         return selectRoomTypeController
+    }
+    
+    func updateWiFiLabels() {
+        if wifiSwitch.isOn {
+            let price = Int(numberOfNightsLabel.text ?? "1")! * 10
+            wifiTotalPrice = price
+            totalCostOfWiFiLabel.text = "$ \(price)"
+            infoWiFiLabel.text = "Yes"
+        } else {
+            wifiTotalPrice = 0
+            totalCostOfWiFiLabel.text = "$ 0"
+            infoWiFiLabel.text = "No"
+        }
+    }
+    
+    func updateSaveButtonState() {
+        let nameText = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let emailText = emailTextField.text ?? ""
+        doneButtonTapped.isEnabled = !nameText.isEmpty && !lastName.isEmpty && !emailText.isEmpty && registration != nil
+    }
+    
+    func updateTotalCost() {
+        print(costOfRoomLabel.text)
+        let totalPrice = wifiTotalPrice + roomPrice
+        totalCostLabel.text = "$ \(totalPrice)"
     }
     
     func updateDateViews() {
@@ -149,17 +202,30 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         numberOfChildrenLabel.text = "\(Int(numberOfChildrenStepper.value))"
     }
     
+    func updateNumberOfNights() {
+        let days = Calendar.current.dateComponents([.day], from: checkInDatePicker.date, to: checkOutDatePicker.date).day
+        numberOfNightsLabel.text = String(days ?? 1)
+        dateOfNightsLabel.text = (checkInDateLabel.text ?? "") + " - " + (checkOutDateLabel.text ?? "")
+    }
+    
     func updateRoomType() {
         if let roomType = roomType {
             roomTypeLabel.text = roomType.name
+            let price = Int(numberOfNightsLabel.text ?? "1")! * roomType.price
+            self.roomPrice = price
+            costOfRoomLabel.text = "$ \(price)"
+            detailInfoRoomLabel.text = "\(roomType.name) @ $\(roomType.price)/night"
         } else {
             roomTypeLabel.text = "Not Set"
+            costOfRoomLabel.text = "$ 0"
+            detailInfoRoomLabel.text = "Not Set"
         }
     }
     
     func selectRoomTypeTableViewController(_ controller: SelectRoomTypeTableViewController, didSelect roomType: RoomType) {
         self.roomType = roomType
         updateRoomType()
+        updateTotalCost()
     }
     
     // MARK: - Table view data source
