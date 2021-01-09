@@ -9,8 +9,6 @@ import UIKit
 
 class RegistrationTableViewController: UITableViewController {
     
-    
-    
     var registrations: [Registration] = []
     var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
