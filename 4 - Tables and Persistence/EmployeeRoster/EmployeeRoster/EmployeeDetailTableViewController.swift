@@ -5,8 +5,8 @@ protocol EmployeeDetailTableViewControllerDelegate: AnyObject {
     func employeeDetailTableViewController(_ controller: EmployeeDetailTableViewController, didSave employee: Employee)
 }
 
-class EmployeeDetailTableViewController: UITableViewController, UITextFieldDelegate {
-
+class EmployeeDetailTableViewController: UITableViewController, UITextFieldDelegate, EmployeeTypeTableViewControllerDelegate {
+    
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var dobLabel: UILabel!
     @IBOutlet var employeeTypeLabel: UILabel!
@@ -25,6 +25,8 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
     
     weak var delegate: EmployeeDetailTableViewControllerDelegate?
     var employee: Employee?
+    
+    var employeeType: EmployeeType?
     
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -68,6 +70,20 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
         }
     }
     
+    
+    @IBSegueAction func showEmployeeTypes(_ coder: NSCoder) -> EmployeeTypeTableViewController? {
+        let selectEmployeeType = EmployeeTypeTableViewController(coder: coder)
+        selectEmployeeType?.delegate = self
+        return selectEmployeeType
+    }
+    
+    func employeeTypeTableViewController(_ controller: EmployeeTypeTableViewController, didSelect employeeType: EmployeeType) {
+        self.employeeType = employeeType
+        employeeTypeLabel.text = employeeType.description
+        employeeTypeLabel.textColor = .black
+        updateSaveButtonState()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -83,15 +99,17 @@ class EmployeeDetailTableViewController: UITableViewController, UITextFieldDeleg
     
     
     private func updateSaveButtonState() {
+        let hasValue = employeeType != nil
         let shouldEnableSaveButton = nameTextField.text?.isEmpty == false
-        saveBarButtonItem.isEnabled = shouldEnableSaveButton
+        saveBarButtonItem.isEnabled = shouldEnableSaveButton && hasValue
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let name = nameTextField.text else {
+        guard let name = nameTextField.text, let type = employeeType else {
             return
         }
-        let employee = Employee(name: name, dateOfBirth: dobDatePicker.date, employeeType: .exempt)
+        
+        let employee = Employee(name: name, dateOfBirth: dobDatePicker.date, employeeType: type)
         delegate?.employeeDetailTableViewController(self, didSave: employee)
     }
     
