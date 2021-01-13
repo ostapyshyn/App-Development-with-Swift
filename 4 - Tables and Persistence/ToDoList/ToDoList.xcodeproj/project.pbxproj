@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B67832725AEBC3900C2FDC8 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B67832625AEBC3900C2FDC8 /* ToDoCell.swift */; };
 		0B934F2225AC0B8700C8190E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B934F2125AC0B8700C8190E /* AppDelegate.swift */; };
 		0B934F2425AC0B8700C8190E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B934F2325AC0B8700C8190E /* SceneDelegate.swift */; };
 		0B934F2925AC0B8700C8190E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B934F2725AC0B8700C8190E /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B67832625AEBC3900C2FDC8 /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		0B934F1E25AC0B8700C8190E /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B934F2125AC0B8700C8190E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B934F2325AC0B8700C8190E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				0B934F5025ACD82300C8190E /* ToDoDetailTableViewController.swift */,
 				0B934F3725AC0EF500C8190E /* ToDo.swift */,
 				0B934F3A25AC10C000C8190E /* ToDoTableViewController.swift */,
+				0B67832625AEBC3900C2FDC8 /* ToDoCell.swift */,
 				0B934F2A25AC0B8900C8190E /* Assets.xcassets */,
 				0B934F2C25AC0B8900C8190E /* LaunchScreen.storyboard */,
 				0B934F2F25AC0B8900C8190E /* Info.plist */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B934F3825AC0EF500C8190E /* ToDo.swift in Sources */,
+				0B67832725AEBC3900C2FDC8 /* ToDoCell.swift in Sources */,
 				0B934F5125ACD82300C8190E /* ToDoDetailTableViewController.swift in Sources */,
 				0B934F3B25AC10C000C8190E /* ToDoTableViewController.swift in Sources */,
 				0B934F2225AC0B8700C8190E /* AppDelegate.swift in Sources */,

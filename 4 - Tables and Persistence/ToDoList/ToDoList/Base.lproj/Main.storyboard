@@ -16,13 +16,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="YVv-hF-OEw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="YVv-hF-OEw" customClass="ToDoCell" customModule="ToDoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YVv-hF-OEw" id="Wyu-Y7-kPi">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vA-b3-Fzr">
+                                            <rect key="frame" x="10" y="8.5" width="34" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="34" id="gh9-s4-HEy"/>
+                                            </constraints>
+                                            <state key="normal" image="circle" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <state key="selected" image="checkmark.circle.fill" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="isCompleteButtonTapped:" destination="vLc-o2-1VH" eventType="touchUpInside" id="QUj-Cs-9lD"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiP-2f-goT">
+                                            <rect key="frame" x="52" y="11" width="330" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QiP-2f-goT" firstAttribute="centerY" secondItem="Wyu-Y7-kPi" secondAttribute="centerY" id="H0L-OX-80m"/>
+                                        <constraint firstItem="QiP-2f-goT" firstAttribute="leading" secondItem="8vA-b3-Fzr" secondAttribute="trailing" constant="8" id="Kxd-ts-uPa"/>
+                                        <constraint firstItem="8vA-b3-Fzr" firstAttribute="centerY" secondItem="Wyu-Y7-kPi" secondAttribute="centerY" id="ZDm-iL-t4c"/>
+                                        <constraint firstItem="8vA-b3-Fzr" firstAttribute="leading" secondItem="Wyu-Y7-kPi" secondAttribute="leading" constant="10" id="cbt-0t-JDx"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="QiP-2f-goT" secondAttribute="trailing" constant="12" id="iEd-lZ-ao8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="isCompleteButton" destination="8vA-b3-Fzr" id="VcX-hu-vVW"/>
+                                    <outlet property="titleLabel" destination="QiP-2f-goT" id="DUy-rb-ccc"/>
+                                    <segue destination="Pen-v5-bfl" kind="presentation" id="nw6-Nm-rmc"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -71,11 +106,18 @@
                                                     <state key="selected" image="checkmark.circle.fill" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="isCompleteButtonTapped:" destination="vLc-o2-1VH" eventType="touchUpInside" id="Ixy-V1-TvL"/>
+                                                    </connections>
                                                 </button>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Remind me to..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ilx-z7-tAS">
                                                     <rect key="frame" x="78" y="5" width="316" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="returnPressed:" destination="vLc-o2-1VH" eventType="primaryActionTriggered" id="oGb-iA-dX1"/>
+                                                        <action selector="textEditingChanged:" destination="vLc-o2-1VH" eventType="editingChanged" id="gd2-XP-qWf"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -126,6 +168,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="kUC-Th-skf">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                                    <connections>
+                                                        <action selector="datePickerChanged:" destination="vLc-o2-1VH" eventType="primaryActionTriggered" id="NEH-er-fJM"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -188,6 +233,7 @@
                         <outlet property="dueDatePickerView" destination="kUC-Th-skf" id="Mmr-Qd-VGP"/>
                         <outlet property="isCompleteButton" destination="OzZ-EV-1sU" id="K4k-YT-hw9"/>
                         <outlet property="notesTextView" destination="Mqf-yn-geS" id="yeF-Bw-zSF"/>
+                        <outlet property="saveButton" destination="Kpe-y8-YkB" id="3Fm-JX-Eog"/>
                         <outlet property="titleTextField" destination="ilx-z7-tAS" id="bm4-z2-PGk"/>
                     </connections>
                 </tableViewController>
@@ -205,12 +251,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vLc-o2-1VH" kind="relationship" relationship="rootViewController" id="yjp-Xl-7Kx"/>
+                        <segue destination="vLc-o2-1VH" kind="relationship" relationship="rootViewController" destinationCreationSelector="editToDo:sender:" id="yjp-Xl-7Kx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9j-HC-Gvv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1206" y="116"/>
+            <point key="canvasLocation" x="1306" y="116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qi6-lu-Ims">
@@ -229,6 +275,9 @@
             <point key="canvasLocation" x="-381" y="116"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nw6-Nm-rmc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
