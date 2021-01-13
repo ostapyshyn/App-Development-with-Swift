@@ -7,14 +7,16 @@
 
 import UIKit
 
-class ToDoTableViewController: UITableViewController {
+class ToDoTableViewController: UITableViewController, ToDoCellDelegate
+{
     
     var todos = [ToDo]()
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
-        
+        setupSearchBar()
         if let savedToDos = ToDo.loadToDos() {
             todos = savedToDos
         } else {
@@ -37,6 +39,7 @@ class ToDoTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }
+        ToDo.saveToDos(todos)
     }
     
     @IBSegueAction func editToDo(_ coder: NSCoder, sender: Any?) -> ToDoDetailTableViewController? {
@@ -50,6 +53,23 @@ class ToDoTableViewController: UITableViewController {
         return detailController
     }
     
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        searchController.obscuresBackgroundDuringPresentation = false
+    }
+    
+    func checkmarkTapped(sender: ToDoCell) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            var todo = todos[indexPath.row]
+            todo.isComplete.toggle()
+            todos[indexPath.row] = todo
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        ToDo.saveToDos(todos)
+    }
+    
     
     // MARK: - Table view data source
     
@@ -61,6 +81,7 @@ class ToDoTableViewController: UITableViewController {
         if editingStyle == .delete {
             todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            ToDo.saveToDos(todos)
         }
     }
     
@@ -71,6 +92,7 @@ class ToDoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCellIdentifier", for: indexPath) as! ToDoCell
         let todo = todos[indexPath.row]
+        cell.delegate = self
         cell.titleLabel?.text = todo.title
         cell.isCompleteButton.isSelected = todo.isComplete
         
@@ -123,3 +145,11 @@ class ToDoTableViewController: UITableViewController {
      */
     
 }
+
+extension ToDoTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        todos[0].title.contains(searchText)
+        print(searchText)
+    }
+}
+
