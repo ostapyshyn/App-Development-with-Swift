@@ -1,24 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Contest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68w-ax-H4f">
+                                <rect key="frame" x="41.5" y="108" width="331" height="24"/>
+                                <string key="text">Enter an email address for the contest
+
+Excerpt From: Apple Education. “Develop in Swift Data Collections”. Apple Inc. - Education, 2020. Apple Books. https://books.apple.com/ua/book/develop-in-swift-data-collections/id151118397</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2G-8w-LzK">
+                                <rect key="frame" x="182.5" y="254" width="49" height="30"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zxj-1U-e8P"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XPg-6k-Wvy">
+                                <rect key="frame" x="97" y="156" width="220" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="u26-1v-Xno"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="68w-ax-H4f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="64" id="9KC-6W-Z8e"/>
+                            <constraint firstItem="XPg-6k-Wvy" firstAttribute="top" secondItem="68w-ax-H4f" secondAttribute="bottom" constant="24" id="AQg-sO-T1d"/>
+                            <constraint firstItem="68w-ax-H4f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oh8-ic-uU2"/>
+                            <constraint firstItem="s2G-8w-LzK" firstAttribute="top" secondItem="XPg-6k-Wvy" secondAttribute="bottom" constant="64" id="Pfl-B9-zMq"/>
+                            <constraint firstItem="XPg-6k-Wvy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bOQ-kO-T8S"/>
+                            <constraint firstItem="s2G-8w-LzK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wpC-ZZ-68z"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textField" destination="XPg-6k-Wvy" id="Jxl-55-CQO"/>
+                        <segue destination="n2l-Nn-Fe8" kind="show" identifier="second" id="mYW-Os-oi9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="101.78571428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AAF-LN-ILN">
+            <objects>
+                <viewController id="n2l-Nn-Fe8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uR8-lW-Leh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have successfully entered the contest" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfe-ax-Qch">
+                                <rect key="frame" x="80.5" y="397" width="253" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="253" id="kZP-4i-Oit"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="psv-Ke-vIx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jfe-ax-Qch" firstAttribute="centerX" secondItem="uR8-lW-Leh" secondAttribute="centerX" id="3Tp-cG-t8I"/>
+                            <constraint firstItem="jfe-ax-Qch" firstAttribute="centerY" secondItem="uR8-lW-Leh" secondAttribute="centerY" id="E8h-9k-o6A"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jhn-xh-6Zt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jS3-mg-v9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873.91304347826099" y="101.78571428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
