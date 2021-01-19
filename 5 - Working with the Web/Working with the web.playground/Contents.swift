@@ -35,7 +35,6 @@ func fetchPhotoInfo(completion: @escaping (Result<PhotoInfo, Error>) -> Void) {
         }
         
     }
-
     task.resume()
 }
 
