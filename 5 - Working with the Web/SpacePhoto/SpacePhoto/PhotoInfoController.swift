@@ -9,6 +9,25 @@ import UIKit
 
 class PhotoInfoController {
     
+    enum PhotoInfoError: Error, LocalizedError {
+        case imageDataMissing
+    }
+    
+    func fetchImage(from url: URL, completion: @escaping
+       (Result<UIImage, Error>) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { (data,
+           response, error) in
+            if let data = data, let image = UIImage(data: data) {
+                completion(.success(image))
+            } else if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.failure(PhotoInfoError.imageDataMissing))
+            }
+        }
+        task.resume()
+    }
+    
     func fetchPhotoInfo(completion: @escaping (Result<PhotoInfo, Error>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.nasa.gov/planetary/apod")!
         urlComponents.queryItems = [
