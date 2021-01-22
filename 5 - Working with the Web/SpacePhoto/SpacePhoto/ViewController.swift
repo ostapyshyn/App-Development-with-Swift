@@ -28,18 +28,40 @@ class ViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photoInfo):
+                    self.updateUI(with: photoInfo)
+                case .failure(let error):
+                    self.updateUI(with: error)
+                }
+            }
+        }
+        
+        
+    }
+    
+    func updateUI(with error: Error) {
+        title = "Error Fetching Photo"
+        spaceImage.image = UIImage(systemName: "exclamationmark.octagon")
+        descriptionLabel.text = error.localizedDescription
+        copyrightLabel.text = ""
+    }
+    
+    func updateUI(with photoInfo: PhotoInfo) {
+        photoInfoController.fetchImage(from: photoInfo.url) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
                     self.title = photoInfo.title
+                    self.spaceImage.image = image
                     self.descriptionLabel.text = photoInfo.description
                     self.copyrightLabel.text = photoInfo.copyright
                 case .failure(let error):
-                    self.title = "Error Fetching Photo"
-                    self.spaceImage.image = UIImage(systemName: "exclamationmark.octagon")
-                    self.descriptionLabel.text = error.localizedDescription
-                    self.copyrightLabel.text = ""
+                    self.updateUI(with: error)
                 }
             }
         }
     }
+    
+        
 
 
 }
