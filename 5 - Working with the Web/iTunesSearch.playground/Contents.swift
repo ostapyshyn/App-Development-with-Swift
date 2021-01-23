@@ -94,8 +94,6 @@ fetchItems(matching: query) { (result) in
             Kind: \(item.kind)
             Description: \(item.description)
             Artwork URL: \(item.artworkURL)
-                
-                
             """)
         }
     case .failure(let error):

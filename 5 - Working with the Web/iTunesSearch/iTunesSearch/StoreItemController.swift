@@ -5,7 +5,7 @@
 //  Created by Volodymyr Ostapyshyn on 22.01.2021.
 //
 
-import Foundation
+import UIKit
 
 class StoreItemController {
     func fetchItems(matching query: [String: String], completion: @escaping (Result<[StoreItem], Error>) -> Void) {
@@ -25,6 +25,29 @@ class StoreItemController {
             }
         }
         
+        task.resume()
+    }
+    
+    enum PhotoInfoError: Error, LocalizedError {
+        case imageDataMissing
+    }
+    
+    func fetchImage(from url: URL, completion: @escaping
+       (Result<UIImage, Error>) -> Void) {
+        var urlComponents = URLComponents(url: url,
+               resolvingAgainstBaseURL: true)
+            urlComponents?.scheme = "https"
+        
+        let task = URLSession.shared.dataTask(with:
+               urlComponents!.url!) { (data, response, error) in
+            if let data = data, let image = UIImage(data: data) {
+                completion(.success(image))
+            } else if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.failure(PhotoInfoError.imageDataMissing))
+            }
+        }
         task.resume()
     }
 }

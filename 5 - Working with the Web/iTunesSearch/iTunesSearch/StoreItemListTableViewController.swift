@@ -42,8 +42,9 @@ class StoreItemListTableViewController: UITableViewController {
             itemController.fetchItems(matching: query) { (result) in
                 switch result {
                 case .success(let storeItems):
-                    self.items = storeItems
+                    
                     DispatchQueue.main.async {
+                        self.items = storeItems
                         self.tableView.reloadData()
                     }
                 case .failure(let error):
@@ -59,14 +60,27 @@ class StoreItemListTableViewController: UITableViewController {
         
         // set cell.titleLabel to the item's name
         cell.titleLabel.text = item.name
-        
         // set cell.detailLabel to the item's artist
         cell.detailLabel.text = item.artist
         // set cell.itemImageView to the system image "photo"
-        cell.imageView?.image = UIImage(systemName: "photo")
+        cell.itemImageView.image = UIImage(systemName: "photo")
         // initialize a network task to fetch the item's artwork
-        
         // if successful, use the main queue capture the cell, to initialize a UIImage, and set the cell's image view's image to the
+        
+        itemController.fetchImage(from: item.artworkURL) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    cell.itemImageView?.image = image
+                    //cell.imageView?.contentMode = .scaleAspectFit
+                case .failure(let error):
+                    cell.itemImageView?.image = UIImage(systemName: "photo")
+                    //cell.imageView?.contentMode = .scaleAspectFit
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
     }
     
     @IBAction func filterOptionUpdated(_ sender: UISegmentedControl) {

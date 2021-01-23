@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     let photoInfoController = PhotoInfoController()
     
-    
     @IBOutlet var spaceImage: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var copyrightLabel: UILabel!
