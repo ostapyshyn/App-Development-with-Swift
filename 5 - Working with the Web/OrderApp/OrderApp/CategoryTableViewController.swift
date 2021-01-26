@@ -31,6 +31,16 @@ class CategoryTableViewController: UITableViewController {
         }
     }
     
+    @IBSegueAction func showMenu(_ coder: NSCoder, sender: Any?) -> MenuTableViewController? {
+        guard let cell = sender as? UITableViewCell, let indexPath =
+                tableView.indexPath(for: cell) else {
+            return nil
+        }
+        let category = categories[indexPath.row]
+        return MenuTableViewController(coder: coder, category: category)
+    }
+    
+    
     func displayError(_ error: Error, title: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title,
