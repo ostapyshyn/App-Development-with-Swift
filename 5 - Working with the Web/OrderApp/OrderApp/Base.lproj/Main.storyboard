@@ -82,7 +82,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="mAn-dw-ABO" kind="show" id="bdf-Uw-Wrq"/>
+                                    <segue destination="mAn-dw-ABO" kind="show" destinationCreationSelector="showMenuItem:sender:" id="bdf-Uw-Wrq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -104,14 +104,73 @@
                     <view key="view" contentMode="scaleToFill" id="VxC-Hp-Ed1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9V-au-veT">
+                                <rect key="frame" x="15" y="754" width="384" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="de1-Pt-kKc"/>
+                                </constraints>
+                                <state key="normal" title="Add To Order">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vfO-ta-MU3">
+                                <rect key="frame" x="15" y="155" width="384" height="277.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tIG-Ui-Vnw">
+                                        <rect key="frame" x="0.0" y="0.5" width="384" height="223.5"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f3Z-0w-FLX">
+                                        <rect key="frame" x="0.0" y="232" width="384" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0w-4d-H4A">
+                                                <rect key="frame" x="0.0" y="0.0" width="319" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmf-nr-xON">
+                                                <rect key="frame" x="327" y="0.0" width="57" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg4-UD-sNE">
+                                        <rect key="frame" x="0.0" y="260.5" width="384" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="c5V-SH-8nV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vfO-ta-MU3" firstAttribute="leading" secondItem="c5V-SH-8nV" secondAttribute="leading" constant="15" id="6v0-XS-UpG"/>
+                            <constraint firstItem="c5V-SH-8nV" firstAttribute="trailing" secondItem="vfO-ta-MU3" secondAttribute="trailing" constant="15" id="Hz7-Oj-ntc"/>
+                            <constraint firstItem="tIG-Ui-Vnw" firstAttribute="height" secondItem="VxC-Hp-Ed1" secondAttribute="height" multiplier="0.25" id="KeP-cT-EIN"/>
+                            <constraint firstItem="vfO-ta-MU3" firstAttribute="top" secondItem="c5V-SH-8nV" secondAttribute="top" constant="15" id="VHd-8u-dwT"/>
+                            <constraint firstItem="c5V-SH-8nV" firstAttribute="trailing" secondItem="I9V-au-veT" secondAttribute="trailing" constant="15" id="bov-6m-uRb"/>
+                            <constraint firstItem="c5V-SH-8nV" firstAttribute="bottom" secondItem="I9V-au-veT" secondAttribute="bottom" constant="15" id="euC-Mq-F14"/>
+                            <constraint firstItem="I9V-au-veT" firstAttribute="leading" secondItem="c5V-SH-8nV" secondAttribute="leading" constant="15" id="njH-Id-5gN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mag-UW-Cwj"/>
+                    <connections>
+                        <outlet property="addToOrderButton" destination="I9V-au-veT" id="GNx-RU-Ktx"/>
+                        <outlet property="detailTextLabel" destination="Zg4-UD-sNE" id="z4f-Jb-eR7"/>
+                        <outlet property="imageView" destination="tIG-Ui-Vnw" id="ni8-XO-pxy"/>
+                        <outlet property="nameLabel" destination="j0w-4d-H4A" id="ZnD-tw-n5O"/>
+                        <outlet property="priceLabel" destination="Pmf-nr-xON" id="Kvy-aZ-f4U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nsu-Xk-92t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2871" y="-62"/>
+            <point key="canvasLocation" x="2869.5652173913045" y="-62.276785714285708"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Ed2-U0-QI4">
@@ -199,8 +258,12 @@
     <resources>
         <image name="bag" catalog="system" width="128" height="128"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -11,6 +11,8 @@ class MenuController {
     typealias MinutesToPrepare = Int
     let baseURL = URL(string: "http://localhost:8080/")!
     
+    static let shared = MenuController()
+    
     func fetchCategories(completion: @escaping (Result<[String], Error>) -> Void) {
         let categoriesURL = baseURL.appendingPathComponent("categories")
         let task = URLSession.shared.dataTask(with: categoriesURL) { (data, response, error) in
