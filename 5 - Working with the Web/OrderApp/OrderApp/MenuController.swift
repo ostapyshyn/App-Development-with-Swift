@@ -11,6 +11,15 @@ class MenuController {
     typealias MinutesToPrepare = Int
     let baseURL = URL(string: "http://localhost:8080/")!
     
+    var order = Order() {
+        didSet {
+            NotificationCenter.default.post(name:
+               MenuController.orderUpdatedNotification, object: nil)
+        }
+    }
+    
+    static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
+    
     static let shared = MenuController()
     
     func fetchCategories(completion: @escaping (Result<[String], Error>) -> Void) {
