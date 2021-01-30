@@ -9,6 +9,8 @@ import UIKit
 
 class OrderConfirmationViewController: UIViewController {
     
+    @IBOutlet var confirmationLabel: UILabel!
+    
     let minutesToPrepare: Int
     
     init?(coder: NSCoder, minutesToPrepare: Int) {
@@ -23,10 +25,12 @@ class OrderConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        confirmationLabel.text = "Thank you for your order! Your wait time is approximately \(minutesToPrepare) minutes."
+        
     }
     
-
+    
+    
     /*
     // MARK: - Navigation
 
