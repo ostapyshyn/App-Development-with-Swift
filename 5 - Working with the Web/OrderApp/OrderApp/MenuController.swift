@@ -11,10 +11,15 @@ class MenuController {
     typealias MinutesToPrepare = Int
     let baseURL = URL(string: "http://localhost:8080/")!
     
+    var userActivity = NSUserActivity(activityType:
+       "com.example.OrderApp.order")
+    
     var order = Order() {
         didSet {
             NotificationCenter.default.post(name:
                MenuController.orderUpdatedNotification, object: nil)
+            userActivity.order = order
+
         }
     }
     
@@ -101,6 +106,7 @@ class MenuController {
                 let image = UIImage(data: data) {
                 completion(image)
             } else {
+                print("no IMAGE!")
                 completion(nil)
             }
         }

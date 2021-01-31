@@ -23,17 +23,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    func stateRestorationActivity(for scene: UIScene) ->
+       NSUserActivity? {
+        return MenuController.shared.userActivity
+    }
+    
+    func configureScene(for userActivity: NSUserActivity) {
+        if let restoredOrder = userActivity.order {
+            MenuController.shared.order = restoredOrder
+        }
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        NotificationCenter.default.addObserver(self, selector:
-           #selector(updateOrderBadge),
-           name: MenuController.orderUpdatedNotification, object: nil)
-        orderTabBarItem = (window?.rootViewController as?
-           UITabBarController)?.viewControllers?[1].tabBarItem
-        
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateOrderBadge),
+                                               name: MenuController.orderUpdatedNotification, object: nil)
+        orderTabBarItem = (window?.rootViewController as?
+                            UITabBarController)?.viewControllers?[1].tabBarItem
+        
+        if let userActivity =
+            connectionOptions.userActivities.first ??
+            session.stateRestorationActivity {
+            configureScene(for: userActivity)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
